@@ -22,9 +22,9 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: ${{ github.repository_owner }}
           password: ${{ secrets.CONTAINER_REGISTRY_PAT }} 
-          repository: ${{ github.actor }}/near-wallet
+          repository: ${{ github.repository_owner }}/near-wallet
 
       - name: Build and push
         id: docker-build
@@ -34,7 +34,8 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           file: Dockerfile
           push: true
-          tags: latest
+          tags:   ghcr.io/user/app:latest
+        
 
       - name: Image digest
         run: echo ${{ steps.docker-build.outputs.digest }}
