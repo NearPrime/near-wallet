@@ -34,7 +34,7 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           file: Dockerfile
           push: true
-          tags: ${{ steps.login-ghcr.outputs.registry }}/NearPrime:${{ github.sha }}
+          tags: ${{ steps.login-ghcr.outputs.registry }}/ghcr.io/NearPrime:${{ github.sha }}
         
 
       - name: Image digest
