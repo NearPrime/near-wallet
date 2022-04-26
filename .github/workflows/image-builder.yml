@@ -24,7 +24,7 @@ jobs:
         with:
           registry: ghcr.io/NearPrime
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.CONTAINER_REGISTRY_PAT }} 
+          password:  ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.CONTAINER_REGISTRY_PAT }} 
 
       - name: Build and push
         id: docker-build
@@ -34,7 +34,7 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           file: Dockerfile
           push: true
-          tags: ${{ steps.login-ghcr.outputs.registry }}/ghcr.io/NearPrime:${{ github.sha }}
+          tags: latest # ${{ steps.login-ghcr.outputs.registry }}/ghcr.io:${{ github.sha }}
         
 
       - name: Image digest
